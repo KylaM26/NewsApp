@@ -12,7 +12,13 @@ class ArticlesTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        DataService.instance.GetArticles()
+        DataService.instance.GetArticles { (success) in
+//            if (success) {
+//                for article in DataService.instance.articles {
+//                    print(article.title)
+//                }
+//            }
+        }
     }
 
 
