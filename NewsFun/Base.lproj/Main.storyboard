@@ -14,16 +14,16 @@
         <scene sceneID="b0o-s0-3E2">
             <objects>
                 <tableViewController id="udY-xK-2OK" customClass="ArticlesTVC" customModule="NewsFun" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yva-xk-jH8">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yva-xk-jH8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="260" id="M5G-fj-hZu">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ArticleCell" rowHeight="260" id="M5G-fj-hZu" customClass="ArticleCell" customModule="NewsFun" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="260"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M5G-fj-hZu" id="8ms-5A-OHm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="259.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M5G-fj-hZu" id="8ms-5A-OHm">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YouTube to Remove Thousands of Videos Pushing Extreme Views" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="3eT-46-3pB">
@@ -46,8 +46,11 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exf-Rt-Kha">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="exf-Rt-Kha">
                                             <rect key="frame" x="0.0" y="50" width="375" height="179"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="179" id="r39-sR-CpH"/>
+                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -56,13 +59,18 @@
                                         <constraint firstItem="3eT-46-3pB" firstAttribute="top" secondItem="8ms-5A-OHm" secondAttribute="top" id="G7E-6m-Wze"/>
                                         <constraint firstAttribute="trailing" secondItem="exf-Rt-Kha" secondAttribute="trailing" id="GrJ-cZ-GQo"/>
                                         <constraint firstItem="QE1-qU-EWV" firstAttribute="leading" secondItem="8ms-5A-OHm" secondAttribute="leading" id="Ros-se-l0Z"/>
-                                        <constraint firstAttribute="bottom" secondItem="QE1-qU-EWV" secondAttribute="bottom" id="TKK-ar-bN8"/>
+                                        <constraint firstAttribute="bottom" secondItem="QE1-qU-EWV" secondAttribute="bottom" constant="10" id="TKK-ar-bN8"/>
                                         <constraint firstAttribute="trailing" secondItem="QE1-qU-EWV" secondAttribute="trailing" id="Y5M-zv-cyC"/>
                                         <constraint firstItem="3eT-46-3pB" firstAttribute="leading" secondItem="8ms-5A-OHm" secondAttribute="leading" id="pU6-ba-B2d"/>
                                         <constraint firstItem="exf-Rt-Kha" firstAttribute="leading" secondItem="8ms-5A-OHm" secondAttribute="leading" id="vaE-ov-ZlN"/>
                                         <constraint firstAttribute="trailing" secondItem="3eT-46-3pB" secondAttribute="trailing" id="xcU-Dl-dvY"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="categoryLbl" destination="QE1-qU-EWV" id="Ydq-5S-jpz"/>
+                                    <outlet property="imgView" destination="exf-Rt-Kha" id="CCD-MR-23f"/>
+                                    <outlet property="titleLbl" destination="3eT-46-3pB" id="dgx-Y5-Wdv"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

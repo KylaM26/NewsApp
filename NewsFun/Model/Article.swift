@@ -22,4 +22,5 @@ class Article {
         self.description = description
         self.category = category
     }
+    
 }

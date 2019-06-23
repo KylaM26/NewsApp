@@ -6,6 +6,7 @@ target 'NewsFun' do
   use_frameworks!
 
   pod 'DocumentClassifier', '1.0.0'
+  pod 'Kingfisher', '4.7.0'
 
   # Pods for NewsFun
 

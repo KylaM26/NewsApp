@@ -10,14 +10,11 @@ import Foundation
 import DocumentClassifier
 
 class DataService {
-    
     static let instance = DataService()
-    
-    private(set) public var articles = [Article]()
     
     private init() {}
     
-    func GetArticles(completion: @escaping (_ success: Bool) -> ()) {
+    func GetArticles(returnArticles: @escaping ([Article]) -> ()) {
         guard let url = URL(string: ARTICLES_URL) else { print("Invalid articles URL"); return }
         let session = URLSession.shared.dataTask(with: url) { (data, response, error) in
             if response != nil {
@@ -25,27 +22,30 @@ class DataService {
                     if let data = data {
                         if let json = try JSONSerialization.jsonObject(with: data, options: []) as? Dictionary<String, Any> {
                                 if let articles = json["articles"] as? Array<Dictionary<String, Any>> {
+                                    var newsArticles = [Article]()
                                     for newsArticle in articles {
                                         guard let title = newsArticle["title"] as? String,
                                               let imageUrl = newsArticle["urlToImage"] as? String,
-                                              let url = newsArticle["url"] as? String,
-                                              let description = newsArticle["description"] as? String
+                                              let url = newsArticle["url"] as? String
+                                         //     let description = newsArticle["description"] as? String
                                         else { continue }
                                         
-                                        guard let classification = DocumentClassifier().classify(description) else { return }
-                                        let article = Article(title: title, imageURL: imageUrl, url: url, description: description, category: classification.prediction.category.rawValue)
-                                        self.articles.append(article)
+                                        guard let classification = DocumentClassifier().classify(title) else { return }
+                                        let article = Article(title: title, imageURL: imageUrl, url: url, description: "", category: classification.prediction.category.rawValue)
+                                        newsArticles.append(article)
                                     }
-                                    completion(true)
+                                    
+                                    returnArticles(newsArticles)
                                 }
                             }
                         }
                     } catch {
                         print(error)
-                        completion(false)
+                        returnArticles([Article]())
                     }
                 }
             }
         session.resume()
     }
+
 }
